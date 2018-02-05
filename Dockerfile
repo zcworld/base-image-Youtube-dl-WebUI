@@ -1,26 +1,27 @@
-FROM alpine:3.3
-MAINTAINER Barra <docker@zcworld.net>
+FROM alpine:latest
+MAINTAINER zcworld <docker@zcworld.net>
 
-ENV DOKUWIKI_VERSION 2016-06-26
 ENV GID=1001 UID=1001
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
 RUN echo "@commuedge http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
  && echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
  && apk -U add \
     nginx \
+    ffmpeg \
     supervisor \
     tini@commuedge \
-    php7-fpm@testing \
-    php7-curl@testing \
-    php7-iconv@testing \
-    php7-xml@testing \
-    php7-dom@testing \
-    php7-openssl@testing \
-    php7-json@testing \
-    php7-zlib@testing \
-    php7-pdo_mysql@testing \
-    php7-pdo_sqlite@testing \
-    php7-sqlite3@testing \
-    php7-session@testing \
+    php7-fpm@commuedge \
+    php7-curl@commuedge \
+    php7-iconv@commuedge \
+    php7-xml@commuedge \
+    php7-dom@commuedge \
+    php7-json@commuedge \
+    php7-zlib@commuedge \
+    php7-session@commuedge \
+    php7 \
+    php7-phar \
+    gnu-libiconv@testing \
     tar \
     git \
+    curl \
